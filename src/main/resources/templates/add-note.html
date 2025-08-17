@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Note | Notes Keeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            padding: 30px;
+            width: 420px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .animate-fadein {
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .note-form .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .note-form label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .note-form input[type="text"],
+        .note-form textarea,
+        .note-form input[type="color"] {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .note-form input[type="text"]:focus,
+        .note-form textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0,123,255,0.2);
+            outline: none;
+        }
+        .note-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        .btn-save {
+            background: #28a745;
+            color: #fff;
+        }
+        .btn-save:hover {
+            background: #218838;
+        }
+        .btn-cancel {
+            background: #dc3545;
+            color: #fff;
+        }
+        .btn-cancel:hover {
+            background: #c82333;
+        }
+
+        /* ===== Color Picker Preview ===== */
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .card {
+                width: 90%;
+                padding: 20px;
+                
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card animate-fadein">
+            <h2 class="title">📝 Add a New Note</h2>
+            <p class="subtitle">Fill the details below to create a note.</p>
+
+            <form th:action="@{/add}" th:object="${note}" method="post" class="note-form">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" th:field="*{title}" placeholder="Enter title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea id="content" th:field="*{content}" placeholder="Write your note..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="color">Pick a Color</label>
+                    <div>
+                        <input type="color" id="color" th:field="*{color}">
+                        <span class="color-preview" id="colorBox"></span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-save">💾 Save Note</button>
+                    <a href="/" class="btn btn-cancel">✖ Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Color Picker Preview JS
+        const colorInput = document.getElementById('color');
+        const colorBox = document.getElementById('colorBox');
+        colorInput.addEventListener('input', () => {
+            colorBox.style.backgroundColor = colorInput.value;
+        });
+    </script>
+</body>
+</html>
