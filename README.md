@@ -1,8 +1,8 @@
-**#📝Online Notes Keeper**
+**# 📝Online Notes Keeper**
 
 A simple Spring Boot web application that allows users to create, edit, delete, and manage notes online. The project follows the MVC architecture and demonstrates full-stack development using Java, Spring Boot, Spring Data JPA, Thymeleaf, HTML, CSS, and MySQL.
 
-##Features-
+## Features-
 
 -Add new notes
 -View all saved notes on the home page
@@ -12,7 +12,7 @@ A simple Spring Boot web application that allows users to create, edit, delete, 
 
 ----
 
-##Tech Stack-
+## Tech Stack-
 
 Backend: Java, Spring Boot, Spring Data JPA
 Frontend: Thymeleaf, HTML, CSS, Font Awesome
@@ -22,7 +22,7 @@ Version Control: Git & GitHub
 
 ---
 
-##⚙ Setup Instructions
+## ⚙ Setup Instructions
 **1️. Clone the repository**
 git clone https://github.com/your-username/online-notes-keeper.git
 cd online-notes-keeper
@@ -47,7 +47,7 @@ http://localhost:8080
 
 ---
 
-###Future Enhancements-
+### Future Enhancements-
 
 User login & authentication
 Search and categorize notes
@@ -56,7 +56,7 @@ Dark mode UI
 
 ---
 
-###Learning Outcomes-
+### Learning Outcomes-
 
 Hands-on experience with Spring Boot & JPA CRUD
 MVC architecture implementation
